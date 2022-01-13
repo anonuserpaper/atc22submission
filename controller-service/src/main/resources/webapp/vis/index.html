@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  <title>AS Topology | Anon Demo</title>
+	  <link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+	<body>
+		<center>
+			<svg width="1280" height="720"></svg>
+		</center>
+		<center>
+			<p>Blue node: Anon-enabled AS | Orange node: Filter Deployment Location | Purple node: Subscriber | Blue Segments: Whitelisted Traffic | Red Segments: Attack Traffic</p>
+			<div id="timestep">
+				Timestep:
+			</div>
+			<div id ="graphInfoDisplay">
+				Graph:
+			</div>
+			<p> To obtain the latest accurate mapping, CTRL+F5 to refresh the page and clear the browser's cache</p>
+			<!--
+			<p> Use Mousewheel to zoom in/out. Click and drag to navigate. </p>
+			<p> Click only on whitespace, otherwise dragging won't work. </p>
+			-->
+			<!--
+			<p> Press "1" to hide all nodes and edges </p>
+			<p> Press "2" to show all nodes and edges </p>
+			<p> Press "3" to highlight AS 23028, AS 174 and the edge between 23028 and 174 </p>
+			<p> Press "4" to un-highlight AS 23028, AS 174 and the edge between 23028 and  174 </p>
+				-->
+		</center>
+		<script src="js/d3.v4.js"></script>
+		<script src="js/jquery-3.1.1.js"></script>
+		<script src="js/as_vis.js"></script>
+	</body>
+</html>

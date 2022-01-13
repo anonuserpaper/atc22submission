@@ -1,0 +1,8 @@
+* Anon Controller Core
+
+This package introduces the core of Anon controller software.
+
+** Algorithms
+
+*** Cut-set algorithm
+Anon controller software runs the cut-set algorithm to determine the locations of rules for deployment.

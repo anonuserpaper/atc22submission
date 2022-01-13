@@ -1,0 +1,130 @@
+* Anon Controller Suite
+:PROPERTIES:
+:VISIBILITY: content
+:END:
+
+The Anon controller suite contains the main logic of the
+controller side for Anon.
+
+** Running environment and Prerequisites
+
+-  Operating System: Ubuntu 14.04+
+-  JDK: 1.8x (this is important, otherwise the software will not compile)
+-  Apache Maven (a Java package management tool)
+-  SDN Controller: (Ryu SDN controller)[https://github.com/osrg/ryu]
+-  OpenFlow Switches (compatible with OpenFlow 1.3)
+   -  We used Open vSwitch 2.5.0 and Pica8 P-3297 switch in our experiment
+
+** Installation
+
+Run =INSTALL.sh= script on an untouched Ubuntu environment. Type yes
+when prompted. /Root access is required for the installation procedure./
+
+** Steps to run Anon controller
+
+- We assume you will be using Ryu SDN controller for managing the
+  OpenFlow switches, as it is the only supported SDN controller.
+- Edit =ServerConfig.java= file to match your local network environment
+  - which IP and port you wish Anon controller to bind to,
+  - and the running Ryu =rest_Anon_customized_firewall= instance address.
+- Run Anon controller by typing =mvn compile exec:java= or =./RUN.sh= in the project root folder.
+
+Current configuration:
+#+BEGIN_SRC java
+  public class ServerConfig {
+      /**
+       ,* The base URL for Anon service
+       ,*/
+      public static String AnonBaseURL = "http://0.0.0.0:8081/Anon";
+
+      /**
+       ,* The base URL for Ryu Controller service
+       ,*/
+      public static String RyuControllerBaseURL = "http://0.0.0.0:8080";
+
+      /**
+       ,* The base URL for traffic simulator
+       ,*/
+      public static String TrafficSimulatorBaseURL = "http://0.0.0.0:8089";
+  }
+
+#+END_SRC
+
+** Steps to run Anon SDN app
+- Run Anon controller first. The Ryu SDN app will try to connect to Anon controller on start.
+- Run customzied Ryu app:
+  - =ryu-manager rest_Anon_customized_firewall=
+- If your OpenFlow switches are configured correctly, your Anon
+  controller instance should be working properly.
+- When the switches are connected to the controller, both Ryu
+  controller and Anon controller will display connection
+  information.
+** Testing
+
+*** test deploy rules
+
+The following POST call will send a JSON request to Anon controller server
+and trigger deployment function calls.
+
+#+BEGIN_SRC http :pretty
+POST http://j27.0.0.1:8081/Anon/client/deploy
+Content-Type: application/json
+{
+  "clientId": "42",
+  "clientDestination": "Test",
+  "flowRules": [
+    {
+      "flowRuleId": "iiAp6rwr",
+      "flowAction": null,
+      "flowFields": {
+        "nw_src": "32.0.0.0/5",
+        "nw_dst": "32.0.0.0/32"
+      }
+    },
+    {
+      "flowRuleId": "cJ6zZopM",
+      "flowAction": null,
+      "flowFields": {
+        "nw_src": "200.0.0.0/7",
+        "nw_dst": "32.0.0.0/32"
+      }
+    },
+    {
+      "flowRuleId": "H7GJus9T",
+      "flowAction": null,
+      "flowFields": {
+        "nw_src": "41.0.0.0/8",
+        "nw_dst": "32.0.0.0/32"
+      }
+    }
+  ]
+}
+#+END_SRC
+
+#+RESULTS:
+
+** Core components and features
+
+**** DONE Code clean up
+
+Overall, the APIs exist in the code base could be revised and cleaned up.
+Specifically, we would like to 
+- [X] remove unnecessary APIs
+- [X] remove demonstration only APIs
+- [X] add new necessary APIs
+- [X] category APIs by purpose or communication counterparts
+- [X] remove demo-only code
+
+***** Provider discovery
+
+A provider should be able to discover it's logically neighboring providers.
+This is the first step toward constructing a logical Anon network
+
+***** Message routing
+
+By passing messages among neighbors, Anon provider should be able to reach any other providers.
+
+***** Message protocol
+
+With the capability to pass messages around, we then need to clearly define the messaging protocols between providers,
+in order to implement the network system.

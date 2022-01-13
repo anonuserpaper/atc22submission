@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Anon Simulation Test</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+<body>
+  <div ng-app="AnonTestApp">
+    <div ng-controller="MainController">
+      <h1>{{title}}</h1>
+      <p>
+        <button type="button" class="btn btn-success" ng-click="start()" ng-disabled="polling">
+          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+          Start
+        </button>
+        <button type="button" class="btn btn-danger" ng-click="stop()" ng-disabled="!polling">
+          <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+          Stop
+        </button>
+      </p>
+      <div class="alert alert-danger" role="alert" ng-show="alert"><strong>Error:</strong> Could not retrieve data.</div>
+      <div class="panel panel-default" ng-show="flows">
+        <div class="panel-heading">Timestamp: {{time || "0"}}<i class="fa fa-cog fa-spin fa-1x fa-fw pull-right" ng-show="querying"></i></div>
+        <table class="table table-condensed">
+          <tr>
+            <th>Source IP</th>
+            <th>Destination IP</th>
+            <th>Protocol</th>
+            <th>Bytes</th>
+          </tr>
+          <tr ng-repeat="flow in flows">
+            <td>{{flow["ip.src"]}}</td>
+            <td>{{flow["ip.dst"]}}</td>
+            <td>{{flow["ip.proto"]}}</td>
+            <td>{{flow["bytes"]}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/webapp/test/app.js"></script>
+</body>

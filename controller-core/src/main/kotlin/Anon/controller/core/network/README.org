@@ -1,0 +1,21 @@
+#+TITLE: Anon Network
+
+* Anon Network Introduction
+
+** Centralized Model
+
+1. central registry
+   - maintain all online nodes at one location
+   - for each node, also maintain related information
+2. registered node
+   - contact central registry when online
+   - provide Anon related information, e.g.
+     - AS number
+     - controller IP address
+     - number of available rule space
+
+** Distributed Model
+
+1. interconnected nodes
+
+* Anon Network Implementation

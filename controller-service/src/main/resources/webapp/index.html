@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Anon Client</title>
+
+		<!-- jquery -->
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous">
+		</script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+		<script src="js/client.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/client.css">
+		<script type="text/html" id="template-form-rule">
+			<div class="form-rule">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Source IP">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Destination IP">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger delete-new-rule">Remove</button>
+                </div>
+			</div>
+		</script>
+	</head>
+
+	<body>
+		<div id="container" class="container-fluid">
+            <div class="row">
+                <div class="col-md-offset-1 col-md-5">
+                    <h1>Anon Client Demo</h1>
+                </div>
+            </div>
+			<div class="row">
+				<div class="col-md-offset-1 col-md-5">
+					<form id="client-form" class="form-inline">
+						<span>your id:</span>
+						<span id="clientId"></span>
+						<h3>Create and Submit Filters:</h3>
+					</form>
+
+					<div style="margin-top:20px;">
+                    <hr>
+					<button type="button" id="new-rule" class="btn btn-primary">New Rule</button>
+					<button type="button" id="submit" class="btn btn-success">Submit</button>
+					</div>
+				</div>
+				<div class="col-md-offset-1 col-md-4">
+					<h3>Installed Rule</h3>
+					<div id="installed-rules-block">
+					</div>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>

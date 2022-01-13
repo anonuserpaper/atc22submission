@@ -1,0 +1,11 @@
+{
+	"ruleGenerationProfile": {
+		"strategy": "MAXCOVERAGE",
+		"maxRules": 1900,
+		"minCoverage": 0.0,
+		"maxCollateral": 0.0,
+		"decayRate": 0.5
+	},
+	"trafficSource": "0.0.0.0:9092",
+	"providerAddress": "0.0.0.0:8081"
+}
